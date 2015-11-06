@@ -17,7 +17,12 @@ rollup({
   plugins: [
     browser()
   ]
-}).then( bundle => (0, eval)( bundle.generate().code ) );
+}).then( bundle => {
+  const { code } = bundle.generate({ format: 'iife' });
+
+  // go ahead and eval it or something!
+  ( 0, eval )( code );
+});
 ```
 
 ## License
